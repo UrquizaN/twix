@@ -2,9 +2,11 @@ defmodule TwixWeb.Schema.Types.Root do
   use Absinthe.Schema.Notation
 
   import_types TwixWeb.Schema.Types.User
+  import_types TwixWeb.Schema.Types.Post
 
   alias Crudry.Middlewares.TranslateErrors
   alias TwixWeb.Resolvers.User, as: UserResolver
+  alias TwixWeb.Resolvers.Post, as: PostResolver
 
   object :root_query do
     field :user, type: :user do
@@ -27,6 +29,19 @@ defmodule TwixWeb.Schema.Types.Root do
 
       resolve &UserResolver.update/2
       middleware TranslateErrors
+    end
+
+    field :create_post, type: :post do
+      arg :input, type: non_null(:create_post_input)
+
+      resolve &PostResolver.create/2
+      middleware TranslateErrors
+    end
+
+    field :add_like_to_post, type: :post do
+      arg :id, type: non_null(:id)
+
+      resolve &PostResolver.add_like/2
     end
   end
 end
