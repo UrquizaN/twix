@@ -1,6 +1,6 @@
 defmodule TwixWeb.TwixSocket do
   use Phoenix.Socket
-  use Absinthe.Phoenix.Socket
+  use Absinthe.Phoenix.Socket, schema: TwixWeb.Schema
   # A Socket handler
   #
   # It's possible to control the websocket connection and
