@@ -43,5 +43,12 @@ defmodule TwixWeb.Schema.Types.Root do
 
       resolve &PostResolver.add_like/2
     end
+
+    field :follow, type: :follow_response do
+      arg :input, type: non_null(:follow_input)
+
+      resolve &UserResolver.follow/2
+      middleware TranslateErrors
+    end
   end
 end

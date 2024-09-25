@@ -13,6 +13,34 @@ defmodule TwixWeb.Schema.Types.User do
     field :email, non_null(:string)
     @desc "Posts"
     field :posts, list_of(:post)
+    @desc "Seguidores"
+    field :followers, list_of(:follower)
+    @desc "Seguindo"
+    field :following, list_of(:following)
+  end
+
+  @desc "Seguidor"
+  object :follower do
+    @desc "Seguidor"
+    field :follower, non_null(:user)
+    @desc "Id"
+    field :follower_id, non_null(:id)
+  end
+
+  @desc "Seguindo"
+  object :following do
+    @desc "Seguindo"
+    field :following, non_null(:user)
+    @desc "Id"
+    field :following_id, non_null(:id)
+  end
+
+  @desc "Resposta de seguir"
+  object :follow_response do
+    @desc "Id"
+    field :following_id, non_null(:id)
+    @desc "Id "
+    field :follower_id, non_null(:id)
   end
 
   input_object :create_user_input do
@@ -33,5 +61,12 @@ defmodule TwixWeb.Schema.Types.User do
     field :email, :string
     @desc "Idade"
     field :age, :integer
+  end
+
+  input_object :follow_input do
+    @desc "Id do usuário"
+    field :user_id, non_null(:id)
+    @desc "Id do seguidor"
+    field :follower_id, non_null(:id)
   end
 end

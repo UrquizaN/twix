@@ -15,4 +15,5 @@ defmodule Twix do
   defdelegate create_user(params), to: Users.Create, as: :call
   defdelegate get_user(id), to: Users.Get, as: :call
   defdelegate update_user(params), to: Users.Update, as: :call
+  defdelegate follow(user_id, follower_id), to: Users.Follow, as: :call
 end
