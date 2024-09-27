@@ -11,4 +11,7 @@ defmodule TwixWeb.Resolvers.User do
 
     Twix.follow(user_id, follower_id)
   end
+
+  def get_posts(user, %{page: page, page_size: page_size}, _context),
+    do: Twix.get_user_posts(user, page, page_size)
 end
